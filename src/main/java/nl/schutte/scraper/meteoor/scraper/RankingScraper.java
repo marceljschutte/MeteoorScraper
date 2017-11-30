@@ -42,6 +42,7 @@ public class RankingScraper implements Scraper {
         try {
             page = webClient.getPage(BASE_URL+badmintonSpeler.getRankingId());
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Fout bij het ophalen van pagina: " + BASE_URL+badmintonSpeler.getRankingId());
             return null;
         }
@@ -55,31 +56,30 @@ public class RankingScraper implements Scraper {
         if (ranking1.isEmpty() && ranking2.isEmpty() && ranking3.isEmpty()) {
             System.out.println("No items found !");
         } else {
+            if(!ranking1.isEmpty()){
             for (DomNode x : ranking1) {
                 HtmlTableDataCell onderdeel = x.getFirstByXPath("//*/td[1]");
                 HtmlTableDataCell plaats = x.getFirstByXPath("//*/td[2]");
                 HtmlTableDataCell punten = x.getFirstByXPath("//*/td[5]");
                 combiRankings.add(new Ranking(Onderdeel.fromString(onderdeel.getTextContent()), Long.valueOf(plaats.getTextContent()),
                         Long.valueOf(punten.getTextContent())));
-            }
+            }}
+            if(!ranking2.isEmpty()){
             for (DomNode x : ranking2) {
                 HtmlTableDataCell onderdeel = x.getFirstByXPath("//*/tr[3]/td[1]");
                 HtmlTableDataCell plaats = x.getFirstByXPath("//*/tr[3]/td[2]");
                 HtmlTableDataCell punten = x.getFirstByXPath("//*/tr[3]/td[5]");
                 combiRankings.add(new Ranking(Onderdeel.fromString(onderdeel.getTextContent()), Long.valueOf(plaats.getTextContent()),
                         Long.valueOf(punten.getTextContent())));
-            }
+            }}
+            if(!ranking3.isEmpty()){
             for (DomNode x : ranking3) {
                 HtmlTableDataCell onderdeel = x.getFirstByXPath("//*/tr[4]/td[1]");
                 HtmlTableDataCell plaats = x.getFirstByXPath("//*/tr[4]/td[2]");
                 HtmlTableDataCell punten = x.getFirstByXPath("//*/tr[4]/td[5]");
                 combiRankings.add(new Ranking(Onderdeel.fromString(onderdeel.getTextContent()), Long.valueOf(plaats.getTextContent()),
                         Long.valueOf(punten.getTextContent())));
-            }
-
-            for (Ranking rank : combiRankings) {
-                System.out.println(rank);
-            }
+            }}
         }
         return badmintonSpeler.setRankings(combiRankings);
     }

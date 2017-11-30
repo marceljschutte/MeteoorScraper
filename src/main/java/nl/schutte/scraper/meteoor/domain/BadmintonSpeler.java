@@ -51,9 +51,9 @@ public class BadmintonSpeler {
 
     public String getNaam() { return voorNaam + " " + achterNaam;}
 
-    public long getEnkelRanking(){return findRanking(Onderdeel.ENKEL).getRanking();}
-    public long getDubbelRanking(){return findRanking(Onderdeel.DUBBEL).getRanking();}
-    public long getMixRanking(){return findRanking(Onderdeel.GEMENGDDUBBEL).getRanking();}
+    public long getEnkelRanking(){return (findRanking(Onderdeel.ENKEL) != null ? findRanking(Onderdeel.ENKEL).getRanking(): 0 );}
+    public long getDubbelRanking(){return (findRanking(Onderdeel.DUBBEL) != null ? findRanking(Onderdeel.DUBBEL).getRanking(): 0 );}
+    public long getMixRanking(){return (findRanking(Onderdeel.GEMENGDDUBBEL) != null ? findRanking(Onderdeel.GEMENGDDUBBEL).getRanking(): 0 );}
 
     private Ranking findRanking(Onderdeel onderdeel){
         for (Ranking r: getRankings()){

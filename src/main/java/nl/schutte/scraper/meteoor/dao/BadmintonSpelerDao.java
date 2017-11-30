@@ -12,6 +12,9 @@ import nl.schutte.scraper.dao.BaseDao;
 import nl.schutte.scraper.meteoor.dao.mapper.BadmintonSpelerMapper;
 import nl.schutte.scraper.meteoor.domain.BadmintonSpeler;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * introWebScraping - Description.
  *

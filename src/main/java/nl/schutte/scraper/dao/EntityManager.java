@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.RunScript;
@@ -17,6 +19,7 @@ import org.h2.tools.RunScript;
  * @since 09-11-2017
  */
 public final class EntityManager {
+
 
     private static final EntityManager INSTANCE = new EntityManager();
     private Connection dsConnection;
@@ -41,6 +44,7 @@ public final class EntityManager {
     }
 
     private void initDB() throws SQLException {
+
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:meteoorscraper");
         ds.setUser("sa");

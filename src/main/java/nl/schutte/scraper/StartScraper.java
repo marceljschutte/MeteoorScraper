@@ -5,6 +5,7 @@ package nl.schutte.scraper;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import nl.schutte.scraper.meteoor.dao.BadmintonSpelerDao;
 import nl.schutte.scraper.meteoor.domain.BadmintonSpeler;
@@ -31,7 +32,7 @@ public class StartScraper {
         Set<BadmintonSpeler> alleVerrijkteSpelers = new HashSet<BadmintonSpeler>();
         for(BadmintonSpeler bs: service.getAll()) {
             alleVerrijkteSpelers.add(retrieveSpelerData(bs));
-            System.out.println(bs);
+       //     System.out.println(bs);
         }
         printConsoleTabel(alleVerrijkteSpelers);
     }
@@ -44,6 +45,8 @@ public class StartScraper {
         System.out.println("| " + StringUtils.rightPad(bs.getNaam(), 30) + "| " + StringUtils.rightPad(String.valueOf(bs.getEnkelRanking()), 9) + "| "+ StringUtils.rightPad(String.valueOf(bs.getDubbelRanking()), 9) + "| "+ StringUtils.rightPad(String.valueOf(bs.getMixRanking()), 9) + "|");
         }
         System.out.println("------------------------------------------------------------------");
+
+
     }
 
     private static BadmintonSpeler retrieveSpelerData(BadmintonSpeler speler){

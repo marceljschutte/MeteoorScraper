@@ -31,6 +31,8 @@ public enum Onderdeel {
         switch (StringUtils.lowerCase(text)) {
             case "dames enkel":
             case "damesenkel":
+            case "vrouwen enkel":
+            case "vrouwenenkel":
             case "mannenenkel":
             case "mannen enkel":
                 onderdeel = Onderdeel.ENKEL;
